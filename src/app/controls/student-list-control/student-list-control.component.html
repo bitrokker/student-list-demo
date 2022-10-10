@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <th (click)="onHeaderClick('id')">ID</th>
+        <th (click)="onHeaderClick('firstName')">First Name</th>
+        <th (click)="onHeaderClick('lastName')">Last Name</th>
+        <th (click)="onHeaderClick('university')">University</th>
+        <th (click)="onHeaderClick('city')">City</th>
+        <th (click)="onHeaderClick('country')">Country</th>
+    </thead>
+    <tbody>
+       <tr *ngFor="let student of tableData$ | async">
+            <td>{{student?.id}}</td>
+            <td>{{student?.firstName}}</td>
+            <td>{{student?.lastName}}</td>
+            <td>{{student?.university}}</td>
+            <td>{{student?.city}}</td>
+            <td>{{student?.country}}</td>
+        </tr> 
+    </tbody>    
+</table>
