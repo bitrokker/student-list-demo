@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subscriber } from 'rxjs';
+import { from, map, Observable, of, Subscriber } from 'rxjs';
 import { IStudent } from '../interfaces/student.interface';
 
 @Injectable({
@@ -46,11 +46,7 @@ export class StudentService {
      * Dienst liefert alle Studenten aus "Fake" Datenbank zurück.
      * @returns 
      */
-    public getStudents$(): Observable<Array<IStudent>> {
-        const students$ = new Observable<Array<IStudent>>((observer: Subscriber<Array<IStudent>>) => {            
-            observer.next(this.students);
-        });
-   
-        return students$;
+    public getStudents$(): Observable<Array<IStudent>> {  
+        return from([this.students]);
     }
 }
