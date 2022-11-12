@@ -1,0 +1,52 @@
+<h1>Student List Demo</h1>
+<hr>
+<table>
+    <thead>
+        <th (click)="onHeaderClick('id')">
+            <div>
+                <span>ID</span> 
+                <span class="material-icons"> {{getArrowByHeader('id')}} </span> 
+            </div>            
+        </th>
+        <th (click)="onHeaderClick('firstName')">
+            <div>
+                <span>First Name</span>
+                <span class="material-icons"> {{getArrowByHeader('firstName')}} </span> 
+            </div>            
+        </th>
+        <th (click)="onHeaderClick('lastName')">
+            <div>
+                <span>Last Name</span>
+                <span class="material-icons"> {{getArrowByHeader('lastName')}} </span> 
+            </div>            
+        </th>
+        <th (click)="onHeaderClick('university')">
+            <div>
+                <span>University</span>
+                <span class="material-icons"> {{getArrowByHeader('university')}} </span> 
+            </div>            
+        </th>
+        <th (click)="onHeaderClick('city')">
+            <div>
+                <span>City</span>
+                <span class="material-icons"> {{getArrowByHeader('city')}} </span> 
+            </div>    
+        </th>
+        <th (click)="onHeaderClick('country')">
+            <div>
+                <span>Country</span>
+                <span class="material-icons"> {{getArrowByHeader('country')}} </span> 
+            </div>            
+        </th>
+    </thead>
+    <tbody>
+       <tr *ngFor="let student of tableData$ | async">
+            <td>{{student?.id}}</td>
+            <td>{{student?.firstName}}</td>
+            <td>{{student?.lastName}}</td>
+            <td>{{student?.university}}</td>
+            <td>{{student?.city}}</td>
+            <td>{{student?.country}}</td>
+        </tr> 
+    </tbody>    
+</table>

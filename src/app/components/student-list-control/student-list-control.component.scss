@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+}
+
+th, td {
+    border-bottom: 1px solid #ffffff40;
+    border-collapse: collapse;
+    padding: 1rem;    
+}
+
+th {    
+    text-align: left;
+    cursor: pointer;
+    font-weight: normal;
+    font-style: italic;
+
+    >div {
+        display: flex;
+        flex-direction: row;
+        column-gap: 0.5rem;
+        align-items: center;
+    }
+}
+
+td {
+    padding-right: 2rem;
+}
+
+h1 {
+    text-align: center;
+}
+
+.material-icons {
+    font-size: 14px;
+}

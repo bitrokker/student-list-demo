@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { StudentListControlComponent } from './controls/student-list-control/student-list-control.component';
+import { StudentListControlComponent } from './components/student-list-control/student-list-control.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { StudentListControlComponent } from './controls/student-list-control/stu
     StudentListControlComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
