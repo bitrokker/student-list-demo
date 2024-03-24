@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { map, Observable, Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { IStudent } from '../../interfaces/student.interface';
 import { StudentService } from '../../services/student.service';
 
@@ -9,61 +9,61 @@ import { StudentService } from '../../services/student.service';
   styleUrls: ['./student-list-control.component.scss']
 })
 export class StudentListControlComponent implements OnInit {
-    // PRIVATES  
+    // PRIVATES
     private _currentSelected: string = 'id';
     private _isAscSorted: boolean = true;
 
-    // PUBLICS    
-    public tableData$: Observable<Array<IStudent>> = new Observable<Array<IStudent>>();
+    // PUBLICS
+    tableData$: Observable<IStudent[]> = new Observable<IStudent[]>();
 
     constructor(
         private studentService: StudentService
     ) { }
 
-    ngOnInit(): void { 
+    ngOnInit(): void {
         this.tableData$ = this.studentService.getStudents$();
-    }   
+    }
 
     /**
      * methode sortiert/toggelt die studenten liste per eigenschaft
-     * @param property 
-     */ 
-    public orderStudentListByPropery(header: string): void {
+     * @param header
+     */
+    orderStudentListByProperty(header: string): void {
         type T = keyof IStudent;
 
         this.tableData$ = this.tableData$.pipe(map((data: Array<IStudent>) => {
             if(this._isAscSorted) {
-                data.sort((a, b) => (a[<T>header] < b[<T>header]) ? -1 : ((b[<T>header] > a[<T>header]) ? 1 : 0));              
+                data.sort((a, b) => (a[<T>header] < b[<T>header]) ? -1 : ((b[<T>header] > a[<T>header]) ? 1 : 0));
             } else {
-                data.sort((a, b) => (a[<T>header] > b[<T>header]) ? -1 : ((b[<T>header] < a[<T>header]) ? 1 : 0));               
+                data.sort((a, b) => (a[<T>header] > b[<T>header]) ? -1 : ((b[<T>header] < a[<T>header]) ? 1 : 0));
             }
-            
+
             return data;
-        }));        
+        }));
     }
 
     // EVENTS
 
     /**
      * onclick event für den tabellen header
-     * @param header 
+     * @param header
      */
-    public onHeaderClick(header: string): void {
+    onHeaderClick(header: string): void {
         if(!this._currentSelected || this._currentSelected !== header) {
             this._currentSelected = header;
             this._isAscSorted = false;
         }
 
-        this.orderStudentListByPropery(this._currentSelected); 
-        this._isAscSorted = this._isAscSorted ? false : true;     
-    } 
-    
+        this.orderStudentListByProperty(this._currentSelected);
+        this._isAscSorted = !this._isAscSorted;
+    }
+
     /**
      * methode liefert mat arrow als string zurück.
-     * @param header 
-     * @returns 
+     * @param header
+     * @returns
      */
-    public getArrowByHeader(header: string): string {
+    getArrowByHeader(header: string): string {
         if(this._currentSelected !== header) { return ''; }
         return this._isAscSorted ? 'arrow_upward' : 'arrow_downward';
     }
